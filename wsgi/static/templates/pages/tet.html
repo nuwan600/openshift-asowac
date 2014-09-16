@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+     
+	 	
+	 	 {% block scripts %}
+        	<div id='container' >  dddd {{ weatherchart|load_charts:"container" }} </div>
+         {% endblock %}
+		
+{% endblock content %}
