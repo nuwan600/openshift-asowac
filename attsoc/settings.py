@@ -123,16 +123,36 @@ AUTH_PROFILE_MODULE='allModel.models.SuUser'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'attsoc',
-        'USER': 'root',
-        'PASSWORD': '12345',
-        'HOST' : '127.0.0.1',
-        'PORT' : '3306',
+if ON_PAAS:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',  
+            'NAME':     os.environ['asowac'],
+            'USER':     os.environ['adminTzKaPUm'],
+            'PASSWORD': os.environ['Q4YsRYK42hD4'],
+            'HOST':     os.environ['OPENSHIFT_DB_HOST'],
+            'PORT':     os.environ['OPENSHIFT_DB_PORT'],
+        }
     }
-}
+else:
+    # stock django
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'attsoc',
+#         'USER': 'root',
+#         'PASSWORD': '12345',
+#         'HOST' : '127.0.0.1',
+#         'PORT' : '3306',
+#     }
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
